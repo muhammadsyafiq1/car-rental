@@ -22,12 +22,14 @@ class ProductController extends Controller
 
     public function data(Request $request)
     {
+        // Cache::put('test-cache', 'Hello Redis!', 60);
+        // dd(Cache::get('test-cache'));
         $products = $this->service->getAll();
 
         if ($search = $request->input('search.value')) {
             $products = $products->filter(function ($item) use ($search) {
                 return stripos($item->nama, $search) !== false ||
-                       stripos($item->category->nama ?? '', $search) !== false;
+                    stripos($item->category->nama ?? '', $search) !== false;
             });
         }
 
