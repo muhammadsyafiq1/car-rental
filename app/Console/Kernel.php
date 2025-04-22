@@ -16,6 +16,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('booking:summary')->dailyAt('23:59');
+
+        $schedule->command('queue:work --once')->everyMinute();
     }
 
     /**

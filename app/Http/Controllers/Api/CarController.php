@@ -12,6 +12,9 @@ class CarController extends Controller
 {
     public function index(Request $request)
     {
+        // Cache::put('test-cache', 'Hello Redis!', 60);
+        // dd(Cache::get('test-cache'));
+
         $brand = $request->brand;
         $minPrice = $request->min_price;
         $maxPrice = $request->max_price;

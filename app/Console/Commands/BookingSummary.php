@@ -20,6 +20,18 @@ class BookingSummary extends Command
         $byStatus = Booking::selectRaw('status, COUNT(*) as count')->groupBy('status')->pluck('count', 'status');
         $totalRevenue = Booking::where('status', 'completed')->sum('total_price');
 
+        // BookingSummary::create([
+        //     'tanggal' => now()->toDateString(),
+        //     'total' => $totalBookings,
+        //     'pending' => $byStatus['pending'] ?? 0,
+        //     'confirmed' => $byStatus['confirmed'] ?? 0,
+        //     'completed' => $byStatus['completed'] ?? 0,
+        //     'canceled' => $byStatus['canceled'] ?? 0,
+        //     'revenue' => $totalRevenue,
+        // ]);
+
+        // $this->info('Booking summary saved!');
+
         $this->line("Total bookings       : $totalBookings");
         $this->line("Bookings by status:");
         foreach ($byStatus as $status => $count) {
